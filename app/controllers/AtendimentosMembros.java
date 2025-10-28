@@ -49,5 +49,20 @@ public class AtendimentosMembros extends Controller {
 		flash.success("Pessoa removida com sucesso!");
 		form(atendimentoId);
 	}
+	public static void exibirDetalhes(Long atendimentoId) {
+        // 1. OBRIGATÓRIO: Buscar o Atendimento
+        Atendimento atendimento = Atendimento.findById(atendimentoId);
+
+        // **Tratamento de Nulo:** O objeto pode não ter sido encontrado.
+        if (atendimento == null) {
+            notFound("Atendimento não encontrado!"); // Ou redirecione para uma lista
+        }
+
+        // 2. OBRIGATÓRIO: Buscar a lista de Pessoas (para o <select>)
+        List<Pessoa> pessoas = Pessoa.findAll();
+
+        // 3. Renderizar, passando as duas variáveis
+        render(atendimento, pessoas);
+    }
 
 }

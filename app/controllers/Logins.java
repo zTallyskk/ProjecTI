@@ -1,6 +1,8 @@
 package controllers;
 
 import models.Pessoa;
+import models.Responsavel;
+import models.Usuario;
 import play.mvc.Controller;
 
 public class Logins extends Controller {
@@ -10,15 +12,16 @@ public class Logins extends Controller {
 	}
 	
 	public static void logar(String login, String senha) {
-     	Pessoa pessoa = Pessoa.find("login = ?1 and senha = ?2",
+		Usuario usuario = Usuario.find("login = ?1 and senha = ?2",
               	login, senha).first();
-     	if (pessoa == null) {
+     	if (usuario == null) {
           	flash.error("Login ou senha inválidos");
           	form(); //Redireciona para form de login
      	} else {
-          	session.put("usuarioLogado", pessoa.email);
+          	session.put("usuarioLogado", usuario.login);
+          	session.put("usuarioPerfil", usuario.perfil.name());
           	flash.success("Logado com sucesso!");
-          	Pessoas.form(); //Página inicial
+          	Atendimentos.listar(); //Página inicial
      	}
  	}
 	
@@ -27,5 +30,4 @@ public class Logins extends Controller {
 		flash.success("Você saiu do sistema!");
 		form();
 	}
-
 }

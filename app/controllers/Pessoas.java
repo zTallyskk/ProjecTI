@@ -11,7 +11,6 @@ import models.Pessoa;
 import models.Problema;
 import models.Status;
 
-@With(Seguranca.class)
 public class Pessoas extends Controller {
 
 	public static void form() {
@@ -49,6 +48,10 @@ public class Pessoas extends Controller {
 			validation.keep();
 			form();
 		}
+		pessoa.nome = pessoa.nome.toUpperCase();		
+		pessoa.email = pessoa.email.toLowerCase();
+		
+		flash.success(pessoa.nome + " foi cadastrada com sucesso.");
 		pessoa.save();
 		detalhar(pessoa);
 	}

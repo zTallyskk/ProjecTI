@@ -10,6 +10,7 @@ import play.data.validation.Match;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import net.sf.oval.constraint.Email;
 
@@ -28,9 +29,13 @@ public class Pessoa extends Model {
 	public String senha;
 	
 	@Required
-	@Match("([0-9]{2}) [0-9]{5}-[0-9]{4}")
-	public String tel;
+	public Integer tel;
 
+	@OneToOne
+	public Usuario usuario;
+	
+	public String textoProblem;
+	
 	@ManyToOne
 	public Problema problema;
 

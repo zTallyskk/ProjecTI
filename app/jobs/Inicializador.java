@@ -3,7 +3,10 @@ package jobs;
 import java.util.Date;
 
 import models.Problema;
+import models.Responsavel;
+import models.Usuario;
 import models.Atendimento;
+import models.Perfil;
 import models.Pessoa;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
@@ -26,14 +29,32 @@ public class Inicializador extends Job {
 			Problema SO = new Problema("Sistema Operacional", 103);
 			SO.save();
 			
-			Pessoa joao = new Pessoa();
-			joao.nome = "João da Silva";
-			joao.email = "joaossilva@gmail.com";
-			joao.login = "joaogameskk";
-			joao.senha = "123321";
-			joao.problema = SO;
-			joao.save();
 			
+			Usuario usuarioJoao = new Usuario();
+			usuarioJoao.login = "joaogameskk";
+			usuarioJoao.senha = "123321"; 
+			usuarioJoao.perfil = Perfil.RESPONSAVEL;
+			usuarioJoao.save();
+			
+			Responsavel joao = new Responsavel();
+			joao.usuario = usuarioJoao;
+			joao.save();
+		
+			
+			Usuario usuarioMaria = new Usuario();
+			usuarioMaria.login = "teixeira";
+			usuarioMaria.senha = "1111";
+			usuarioMaria.save();
+			
+			Pessoa maria = new Pessoa();
+			maria.nome = "Teixeirinha";
+			maria.email = "teixeirinha@gmail.com";
+			maria.tel = 892992999;
+			maria.problema = SO;
+			maria.usuario = usuarioMaria;
+			maria.textoProblem = "Fala negão, fala dinho, como você ta? por aqui ta tudo bem. Saudade de voces tambem.";
+			maria.save();
+		
 			Atendimento p1 = new Atendimento();
 			p1.nome = "Problemas com Internet";
 			p1.inicio = new Date();

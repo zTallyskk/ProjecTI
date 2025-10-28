@@ -21,7 +21,7 @@ public class Logins extends Controller {
           	session.put("usuarioLogado", usuario.login);
           	session.put("usuarioPerfil", usuario.perfil.name());
           	flash.success("Logado com sucesso!");
-          	Atendimentos.listar(); //Página inicial
+          	Pessoas.form(); //Página inicial
      	}
  	}
 	

@@ -1,13 +1,11 @@
 #{extends 'main.html' /}
 #{set title:'Listagem de Atendimentos' /}
 
-<ul>
-	#{list items: atendimentos, as:'at'}
-		<li>${at.nome} | 
-			<a href="@{AtendimentosMembros.form(at.id)}">Adicionar Membro</a>
-		</li>
-	#{/list}
-	#{else}
-		<li>Nenhum projeto cadastrado</li>
-	#{/else}
-</ul>
+<form action="@{AtendimentosMembros.salvar}" method="post">
+    <input type="hidden" name="atendimentoId" value="${atendimento?.id}" />
+    
+    <select name="pessoaId">
+        </select>
+    
+    <input type="submit" value="Salvar" />
+</form>

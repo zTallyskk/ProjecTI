@@ -42,24 +42,25 @@ public class Inicializador extends Job {
 		
 			
 			Usuario usuarioMaria = new Usuario();
-			usuarioMaria.login = "teixeira";
-			usuarioMaria.senha = "1111";
+			usuarioMaria.login = "mariaroberta";
+			usuarioMaria.senha = "123321";
+			usuarioMaria.perfil = Perfil.PESSOA;
 			usuarioMaria.save();
 			
 			Pessoa maria = new Pessoa();
-			maria.nome = "Teixeirinha";
-			maria.email = "teixeirinha@gmail.com";
+			maria.nome = "Maria Roberta";
+			maria.email = "robertinha@gmail.com";
 			maria.tel = 892992999;
 			maria.problema = SO;
 			maria.usuario = usuarioMaria;
-			maria.textoProblem = "Fala negão, fala dinho, como você ta? por aqui ta tudo bem. Saudade de voces tambem.";
+			maria.textoProblem = "O notebook não passa da tela de login";
 			maria.save();
-		
-			Atendimento p1 = new Atendimento();
-			p1.nome = "Problemas com Internet";
-			p1.inicio = new Date();
-			p1.fim = new Date();
-			p1.save();
+			
+			Atendimento at1 = new Atendimento();
+			at1.nome = "Problemas com Internet";
+			at1.inicio = new Date();
+			at1.fim = new Date();
+			at1.save();
 		}
 	}
 

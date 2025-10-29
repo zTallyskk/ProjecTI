@@ -37,13 +37,28 @@
 		          <h1 class="sitename">ProjecTI</h1>
 		        </a>
 
-		      <a class="cta-btn d-none d-sm-block" href="/pessoas/form#contact">Como podemos ajudar</a>
+		      <a class="cta-btn d-none d-sm-block" href="@{Logins.logar()}" class="login-link">
+						       Login</a>
+					
 
 		      </div>
 
 		    </div>
 
 		  </header>
+		  #{if flash.error}
+		  					  <div class="alert alert-danger alert-dismissible fade show" role="alert">
+		  					    <strong>Algo deu errado:</strong> ${flash.error}
+		  					    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		  					  </div>
+		  					#{/if}
+		  		    		
+		  		    		#{if flash.success}
+		  					  <div class="alert alert-success alert-dismissible fade show" role="alert">
+		  					    <strong>Sucesso!</strong> ${flash.success}
+		  					    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		  					  </div>
+		  					#{/if}
 		  #{if session['usuarioLogado']}
 						<p>
 							${session['usuarioLogado']}
@@ -57,6 +72,7 @@
         	#{doLayout /}
 
         </div>	
+		
          <script src="@{'/public/bootstrap-5.3.6/js/bootstrap.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
          #{get 'moreScripts' /}

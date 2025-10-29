@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import security.Administrador;
 
 import java.util.*;
 
@@ -13,6 +14,7 @@ import models.Status;
 
 public class Pessoas extends Controller {
 
+	@Administrador
 	public static void form() {
 		List<Problema> problemas = Problema.findAll();
 		render(problemas);
@@ -41,7 +43,8 @@ public class Pessoas extends Controller {
 
 		renderTemplate("Pessoas/form.html", p, problemas);
 	}
-
+	
+	@Administrador
 	public static void salvar(@Valid Pessoa pessoa) {
 		if(validation.hasErrors()) {
 			params.flash();

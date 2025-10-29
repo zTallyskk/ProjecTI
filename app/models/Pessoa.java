@@ -17,20 +17,19 @@ import net.sf.oval.constraint.Email;
 @Entity
 public class Pessoa extends Model {
 
-	@Required
+	@Required(message = "O campo Nome é obrigatório.")
 	public String nome;
 	
-	@Email
-	@Required
+	@Required(message = "O campo E-mail é obrigatório.")
+    @Email(message = "O formato do e-mail é inválido. Ex: nome@dominio.com")
 	public String email;
 	
-	public String login;
-	
-	public String senha;
-	
-	@Required
+	@Required(message = "O campo Telefone é obrigatório.")
 	public Integer tel;
 
+	@Enumerated(EnumType.STRING)
+	public Perfil perfil;
+	
 	@OneToOne
 	public Usuario usuario;
 	
@@ -44,5 +43,6 @@ public class Pessoa extends Model {
 
 	public Pessoa() {
 		this.status = Status.PENDENTE;
+		this.perfil = perfil.PESSOA;
 	}
 }
